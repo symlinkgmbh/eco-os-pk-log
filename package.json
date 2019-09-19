@@ -1,6 +1,6 @@
 {
   "name": "@symlinkde/eco-os-pk-log",
-  "version": "0.0.46",
+  "version": "0.0.47",
   "description": "Package containing all functions for logging.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -38,5 +38,5 @@
   },
   "company": "Symlink GmbH",
   "homepage": "https://2ndlock.com",
-  "repository": "https://gitlab.com"
+  "repository": "https://gitlab.com/symlinkde"
 }

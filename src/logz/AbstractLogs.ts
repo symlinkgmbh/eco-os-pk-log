@@ -77,14 +77,15 @@ export class AbstractLog {
 
   private revealPass(message: any): any {
     if (typeof message === "object") {
-      if (message.password) {
-        message.password = "*****";
+      const _message = { ...message };
+      if (_message.password) {
+        _message.password = "*****";
       }
 
-      if (message.email) {
-        message.email = "*****";
+      if (_message.email) {
+        _message.email = "*****";
       }
-      return message;
+      return _message;
     }
 
     return message;
