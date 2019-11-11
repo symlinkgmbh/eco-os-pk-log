@@ -1,6 +1,6 @@
 {
   "name": "@symlinkde/eco-os-pk-log",
-  "version": "0.0.47",
+  "version": "0.0.52",
   "description": "Package containing all functions for logging.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

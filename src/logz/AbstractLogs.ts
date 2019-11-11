@@ -37,54 +37,44 @@ export class AbstractLog {
   public logMessage(_message: string | object | undefined, _level: string): void {
     switch (_level) {
       case "error":
-        // tslint:disable-next-line:no-console
-        console.log(`${this.getDateString()} || LogLevel: ${_level.toLocaleUpperCase()}`);
-        // tslint:disable-next-line:no-console
-        console.log(this.revealPass(_message));
+        console.error(`${_level.toUpperCase()} \t|| ${this.getDateString()} \t|| `, this.revealPass(_message));
         break;
 
       case "info":
         if (this.logLevel === "info") {
-          // tslint:disable-next-line:no-console
-          console.log(`${this.getDateString()} || LogLevel: ${_level.toUpperCase()}`);
-          // tslint:disable-next-line:no-console
-          console.log(this.revealPass(_message));
+          console.info(`${_level.toUpperCase()} \t|| ${this.getDateString()} \t|| `, this.revealPass(_message));
           break;
         }
         return;
       case "warning":
         if (this.logLevel === "warning" || this.logLevel === "info") {
-          // tslint:disable-next-line:no-console
-          console.log(`${this.getDateString()} || LogLevel: ${_level.toUpperCase()}`);
-          // tslint:disable-next-line:no-console
-          console.log(this.revealPass(_message));
+          console.warn(`${_level.toUpperCase()} \t|| ${this.getDateString()} \t|| `, this.revealPass(_message));
           break;
         }
         return;
       default:
-        // tslint:disable-next-line:no-console
-        console.log(`${this.getDateString()} || LogLevel: ${_level.toUpperCase()}`);
-        // tslint:disable-next-line:no-console
-        console.log(this.revealPass(_message));
+        console.log(`${_level.toUpperCase()} \t|| ${this.getDateString()} \t|| `, this.revealPass(_message));
         break;
     }
   }
 
   private getDateString(): string {
     const d = new Date();
-    return `${d.getFullYear()}:${d.getMonth() + 1}:${d.getDate()}::${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
+    return `${d.toLocaleDateString("de")}:${d.toLocaleTimeString("de")}`;
   }
 
   private revealPass(message: any): any {
-    if (typeof message === "object") {
+    if (Object(message).hasOwnProperty("password") || Object(message).hasOwnProperty("email")) {
       const _message = { ...message };
-      if (_message.password) {
+
+      if (Object(message).hasOwnProperty("password")) {
         _message.password = "*****";
       }
 
-      if (_message.email) {
+      if (Object(message).hasOwnProperty("email")) {
         _message.email = "*****";
       }
+
       return _message;
     }
 
